@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -30,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -58,7 +61,46 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.ui.text.google.fonts)
     implementation(libs.androidx.material3)
+
+    // Splash API
+    implementation(libs.coreSplashscreen)
+
+    // Compose Navigation
+    implementation(libs.navCompose)
+
+    // Dagger Hilt
+    implementation(libs.hiltAndroid)
+    kapt(libs.hiltCompiler)
+    implementation(libs.hiltNavigationCompose)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofitGson)
+
+    // Coil
+    implementation(libs.coilCompose)
+
+    // Datastore
+    implementation(libs.datastorePreferences)
+
+    // Compose Foundation
+    implementation(libs.composeFoundation)
+
+    // Accompanist
+    implementation(libs.accompanistSystemUiController)
+
+    // Paging 3
+    implementation(libs.pagingRuntime)
+    implementation(libs.pagingCompose)
+
+    // Room
+    implementation(libs.roomRuntime)
+    kapt(libs.roomCompiler)
+    implementation(libs.roomKtx)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
